@@ -1,28 +1,25 @@
 #include <iostream>
 using namespace std;
-
-int pairingSubArray(int arr[], int n)
+//Kadane's Algo - O(n)
+int largestSum(int arr[], int n)
 {
-    for (int i =0;i <n;i++)
+    int cs = 0;
+    int largest =0;
+    for(int i =0;i<n;i++)
     {
-        for (int j =i;j<n;j++)
+        cs = cs + arr[i];
+        if(cs<0)
         {
-            cout <<"(";
-            for(int k=i;k<=j;k++)
-            {
-                cout<<arr[k]<<",";
-            }
-            cout <<")";
-            cout <<endl;
+            cs=0;
         }
+        largest=max(largest,cs);
     }
-    return 0;
+    return largest;
 }
 
 int main()
 {
     int arr[]={1,2,3,4,5};
     int n = 5;
-    pairingSubArray(arr,n);
-    
+   cout<<largestSum(arr,n);
 }
